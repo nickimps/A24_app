@@ -16,7 +16,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Get the progress of movies watched
-  var progress_num = (27 / 136) * 100;
+  //   var progress_num = (27 / 136) * 100;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -37,11 +37,7 @@ const Home = () => {
 
       {/* Progress bar */}
       <View style={{ padding: SIZES.medium }}>
-        <Progress
-          bgcolor={COLORS.pastel_green}
-          progress={progress_num.toFixed()}
-          height={30}
-        />
+        <Progress bgcolor={COLORS.pastel_green} height={30} />
       </View>
 
       {/* Main Content Portion */}

@@ -2,21 +2,27 @@ import { useState } from "react";
 import {
   View,
   Text,
-  Span
+  ActivityIndicator
 } from "react-native";
-import { useRouter } from "expo-router";
 
 import styles from "./progress.style";
-import { icons, SIZES } from "../../constants";
+
+import useFetchProgress from "../../hook/useFetchProgress";
+import { COLORS } from "../../constants";
 
 
-const Progress = ({bgcolor, progress, height}) => {
-  const router = useRouter();
+const Progress = ({bgcolor, height}) => {
+  
+  const { progress, isLoading, error } = useFetchProgress();
 
   return (
     <View style={styles.ParentView(height)}>
       <View style={styles.ChildView(progress, bgcolor)}>
-        <Text style={styles.ProgressText}>{`${progress}%`}</Text>
+        {isLoading ? (
+          <ActivityIndicator size='large' color={COLORS.primary} />
+          ) : (
+          <Text style={styles.ProgressText}>{`${progress}%`}</Text>
+          )}
       </View>
     </View>
     

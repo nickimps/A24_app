@@ -11,6 +11,12 @@ import Movies from "./movies/Movies";
 import MovieCard from "./common/cards/movie/MovieCard";
 import WatchedBtn from "./common/cards/movie/WatchedBtn";
 
+// movie details screen
+import MovieTitle from "./moviedetails/movietitle/MovieTitle";
+import MovieSynopsis from "./moviedetails/moviesynopsis/MovieSynopsis";
+import MovieCredits from "./moviedetails/moviecredits/MovieCredits";
+import MovieProvider from "./moviedetails/movieprovider/MovieProvider";
+
 export {
   ScreenHeaderBtn,
   LogoHeader,
@@ -19,4 +25,8 @@ export {
   Movies,
   MovieCard,
   WatchedBtn,
+  MovieTitle,
+  MovieSynopsis,
+  MovieCredits,
+  MovieProvider,
 };

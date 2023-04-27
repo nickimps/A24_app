@@ -15,6 +15,8 @@ const COLORS = {
   black: "#000000",
   pastel_green: "#77dd77",
   hunyadi_yellow: "#FFBF69",
+  cherry_red: "#D2042D",
+  forest_green: "#228B22",
 
   white: "#FFFFFF",
   lightWhite: "#FAFAFC",

@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
-const useFetch = () => {
-  const [data, setData] = useState([]);
+const useFetchMovieDetails = (movieTitle) => {
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,18 +19,16 @@ const useFetch = () => {
     setIsLoading(true);
 
     try {
-      const dataArray = [];
-      const ref_collection = collection(db, "movies");
+      const ref = doc(db, "movies", movieTitle);
+      const movie = await getDoc(ref);
 
-      await getDocs(ref_collection).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          dataArray.push(doc.data());
-        });
-      });
-
-      setData(dataArray);
-
-      setIsLoading(false);
+      if (movie.exists()) {
+        setData(movie.data());
+        setIsLoading(false);
+      } else {
+        setData(null);
+        setIsLoading(false);
+      }
     } catch (error) {
       setError(error);
       console.log("useFetch: " + error);
@@ -39,4 +44,4 @@ const useFetch = () => {
   return { data, isLoading, error };
 };
 
-export default useFetch;
+export default useFetchMovieDetails;
