@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
 
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
 const useFetchMovieDetails = (movieTitle) => {
@@ -19,8 +12,7 @@ const useFetchMovieDetails = (movieTitle) => {
     setIsLoading(true);
 
     try {
-      const ref = doc(db, "movies", movieTitle);
-      const movie = await getDoc(ref);
+      const movie = await getDoc(doc(db, "movies", movieTitle));
 
       if (movie.exists()) {
         setData(movie.data());
@@ -31,7 +23,7 @@ const useFetchMovieDetails = (movieTitle) => {
       }
     } catch (error) {
       setError(error);
-      console.log("useFetch: " + error);
+      console.log("useFetchMovieDetails: " + error);
     } finally {
       setIsLoading(false);
     }

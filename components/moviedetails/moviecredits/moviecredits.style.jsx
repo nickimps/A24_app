@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     paddingTop: SIZES.small,
     justifyContent: "flex-start",
     alignItems: "flex-start",
+    flexWrap: "wrap",
   },
   containerRating: {
     borderRadius: SIZES.medium,

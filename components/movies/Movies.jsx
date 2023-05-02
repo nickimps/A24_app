@@ -21,8 +21,8 @@ const Movies = () => {
 
     const handleCardPress = (item) => {
         setSelectedMovie(item.title);
+        console.log("movies: " + item.title)
         router.push(`/movie-details/${item.title}`);
-        console.log(item.title);
     };
 
     return (

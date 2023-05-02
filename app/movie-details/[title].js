@@ -1,4 +1,3 @@
-import { useCallback, useState } from "react";
 import {
   View,
   Text,
@@ -21,13 +20,10 @@ import useFetchMovieDetails from "../../hook/useFetchMovieDetails";
 import { checkImageURL } from "../../utils";
 
 const MovieDetails = () => {
-  const params = useSearchParams();
   const router = useRouter();
+  const params = useSearchParams();
 
   const { data, isLoading, error } = useFetchMovieDetails(params.title);
-  //   console.log(data["title"]);
-
-  //   const [refreshing, setRefreshing] = useState(false);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>

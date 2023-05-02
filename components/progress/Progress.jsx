@@ -25,7 +25,6 @@ const Progress = ({bgcolor, height}) => {
           )}
       </View>
     </View>
-    
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
 const useFetch = () => {
@@ -13,12 +13,10 @@ const useFetch = () => {
 
     try {
       const dataArray = [];
-      const ref_collection = collection(db, "movies");
 
-      await getDocs(ref_collection).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          dataArray.push(doc.data());
-        });
+      const querySnapshot = await getDocs(collection(db, "movies"));
+      querySnapshot.forEach((doc) => {
+        dataArray.push(doc.data());
       });
 
       setData(dataArray);

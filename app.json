@@ -4,7 +4,22 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "A24_app",
-    "slug": "A24_app"
+    "name": "A24 Checklist",
+    "slug": "A24-checklist",
+    "icon": "./assets/images/ic_launcher.png",
+    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.imperius.A24-checklist",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.nickimps.A24checklist",
+      "versionCode": 1
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0678a457-e69c-4ecd-a06c-dea4e67a055d"
+      }
+    }
   }
 }

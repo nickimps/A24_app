@@ -19,7 +19,6 @@ const useFetchProgress = () => {
 
       await getDocs(ref).then((querySnapshot) => {
         querySnapshot.forEach((movie) => {
-          console.log(movie.data());
           if (movie.data().isWatched) {
             numberOfWatchedMovies += 1;
           }
@@ -29,7 +28,7 @@ const useFetchProgress = () => {
 
       console.log((numberOfWatchedMovies / numberOfMovies) * 100);
 
-      setProgress((numberOfWatchedMovies / numberOfMovies) * 100);
+      setProgress(Math.round((numberOfWatchedMovies / numberOfMovies) * 100));
 
       setIsLoading(false);
     } catch (error) {
