@@ -10,6 +10,7 @@ import { icons } from "../../../../constants";
 
 import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config.js";
+import useFetchProgress from "../../../../hook/useFetchProgress";
 
 
 const MovieCard = ({ item, handleCardPress }) => {
@@ -20,6 +21,8 @@ const MovieCard = ({ item, handleCardPress }) => {
     const [stringRating, onStringRating] = useState('');
     const [visible, setVisible] = useState(false);
 
+    const { refetchProgress } = useFetchProgress();
+
     // Update the movie watched status in the database
     const updateMovie = async () => {
         try {
@@ -28,6 +31,9 @@ const MovieCard = ({ item, handleCardPress }) => {
             await updateDoc(ref, {
                 isWatched: !isWatched
             });
+
+            
+            refetchProgress();
         } catch (error) {
             console.log("updateWatched: " + error);
         }
@@ -95,10 +101,6 @@ const MovieCard = ({ item, handleCardPress }) => {
             </View>
 
             <View style={styles.btnContainer}>
-                <View style={styles.ratingContainer(rating)}>
-                    {rating > 0 ? <Text style={styles.myRating}>{rating}</Text> : <Text style={styles.myRating}></Text>}
-                </View>
-
                 <WatchedBtn 
                         iconUrl={
                             isWatched 
@@ -110,6 +112,13 @@ const MovieCard = ({ item, handleCardPress }) => {
                             showDialog();
                         }}
                     />
+                { rating > 0 &&
+                    <View style={styles.ratingContainer(rating)}>
+                        <Text style={styles.myRating}>{rating}</Text>
+                    </View>
+                }
+                
+
                 <Dialog.Container visible={visible} onBackdropPress={handleCancel}>
                     <Dialog.Title>What is your rating?</Dialog.Title>
                     <Dialog.Input 

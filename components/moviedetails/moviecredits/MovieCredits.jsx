@@ -52,17 +52,7 @@ const MovieCredits = ({ cast, director, myRating, poster }) => {
         </View>
       </View>
 
-      <View
-        style={{
-          width: 200,
-          height: 300,
-          borderRadius: SIZES.xSmall - 3,
-          paddingTop: SIZES.small,
-          paddingHorizontal: SIZES.xSmall - 3,
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-        }}
-      >
+      <View style={styles.imageContainer}>
         <Image
           source={{
             uri: checkImageURL(poster)
@@ -70,11 +60,7 @@ const MovieCredits = ({ cast, director, myRating, poster }) => {
               : "https://cdn.sanity.io/images/9ielf7cc/production/1b1c700f83e823b3f92cead2ad91ce46f2ab0b22-7500x4217.jpg?w=2400&h=1349&fit=crop",
           }}
           resizeMode="cover"
-          style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: SIZES.xSmall - 3,
-          }}
+          style={styles.imageStyle}
         />
       </View>
     </View>

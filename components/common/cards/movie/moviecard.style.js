@@ -6,24 +6,26 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     padding: SIZES.xSmall,
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.lightgray,
     borderRadius: SIZES.small,
     justifyContent: "space-between",
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
+    borderColor: COLORS.black,
+    borderWidth: 1,
   },
   logoContainer: {
     width: 80,
     height: 120,
-    backgroundColor: COLORS.gray,
-    borderRadius: SIZES.small,
+    backgroundColor: COLORS.lightgray,
+    borderRadius: SIZES.xSmall,
     justifyContent: "center",
     alignItems: "center",
   },
   logoImage: {
     width: "100%",
     height: "100%",
-    borderRadius: SIZES.small,
+    borderRadius: SIZES.small - 3,
   },
   year: {
     fontSize: SIZES.medium,
@@ -38,11 +40,11 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: "row",
-    flexShrink: 1,
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     marginTop: 0,
     paddingTop: SIZES.xSmall - 2,
-    justifyContent: "flex-end",
   },
   ratingContainer: (rating) => ({
     width: 31,
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
         ? COLORS.color4
         : rating > 0
         ? COLORS.color5
-        : COLORS.gray,
+        : COLORS.lightgray,
     borderRadius: 3,
     alignItems: "center",
     justifyContent: "center",

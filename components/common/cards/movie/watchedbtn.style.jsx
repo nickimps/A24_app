@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   btnImg: (dimension) => ({
     width: dimension,
     height: dimension,
-    tintColor: COLORS.charcoal,
+    tintColor: COLORS.black,
   }),
 });
 

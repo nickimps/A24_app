@@ -13,7 +13,7 @@ import { COLORS } from "../../constants";
 
 const Progress = ({bgcolor, height}) => {
   
-  const { progress, isLoading, error } = useFetchProgress();
+  const { progress, isLoading, error, refetchProgress } = useFetchProgress();
 
   return (
     <View style={styles.ParentView(height)}>

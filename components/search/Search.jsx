@@ -12,11 +12,11 @@ import { useRouter } from "expo-router";
 import styles from "./search.style";
 import { icons, SIZES } from "../../constants";
 
-const watchedTypes = ["All", "Watched", "Unwatched"];
+// const watchedTypes = ["All", "Watched", "Unwatched"];
 
 const Search = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
-  const [activeWatchedType, setActiveWatchedType] = useState("All");
+  // const [activeWatchedType, setActiveWatchedType] = useState("All");
 
   return (
     <View>
@@ -39,7 +39,7 @@ const Search = ({ searchTerm, setSearchTerm, handleClick }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.tabsContainer}>
+      {/* <View style={styles.tabsContainer}>
         <FlatList
           data={watchedTypes}
           renderItem={({ item }) => (
@@ -57,7 +57,7 @@ const Search = ({ searchTerm, setSearchTerm, handleClick }) => {
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />
-      </View>
+      </View> */}
     </View>
   );
 };

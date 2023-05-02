@@ -33,7 +33,12 @@ const useFetchMovieDetails = (movieTitle) => {
     fetchData();
   }, []);
 
-  return { data, isLoading, error };
+  const refetchMovieDetails = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
+  return { data, isLoading, error, refetchMovieDetails };
 };
 
 export default useFetchMovieDetails;

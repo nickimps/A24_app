@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import {
   View,
   Text,
@@ -23,7 +24,17 @@ const MovieDetails = () => {
   const router = useRouter();
   const params = useSearchParams();
 
-  const { data, isLoading, error } = useFetchMovieDetails(params.title);
+  const { data, isLoading, error, refetchMovieDetails } = useFetchMovieDetails(
+    params.title
+  );
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetchMovieDetails();
+    setRefreshing(false);
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -45,9 +56,9 @@ const MovieDetails = () => {
       <>
         <ScrollView
           showsVerticalScrollIndicator={false}
-          //   refreshControl={
-          //     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          //   }
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         >
           {isLoading ? (
             <ActivityIndicator size="large" color={COLORS.primary} />

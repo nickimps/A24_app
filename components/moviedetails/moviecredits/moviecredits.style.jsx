@@ -61,6 +61,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   }),
+  imageContainer: {
+    width: 200,
+    height: undefined,
+    resizeMode: "contain",
+    borderRadius: SIZES.xSmall - 3,
+    marginTop: SIZES.small,
+    marginHorizontal: SIZES.xSmall - 3,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    elevation: 10,
+  },
+  imageStyle: {
+    width: "100%",
+    height: "100%",
+    borderRadius: SIZES.xSmall - 3,
+    width: "100%",
+    height: 300,
+  },
 });
 
 export default styles;

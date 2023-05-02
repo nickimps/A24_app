@@ -26,9 +26,8 @@ const useFetchProgress = () => {
         });
       });
 
-      console.log((numberOfWatchedMovies / numberOfMovies) * 100);
-
       setProgress(Math.round((numberOfWatchedMovies / numberOfMovies) * 100));
+      console.log("Progress: " + progress);
 
       setIsLoading(false);
     } catch (error) {
@@ -43,7 +42,12 @@ const useFetchProgress = () => {
     fetchData();
   }, []);
 
-  return { progress, isLoading, error };
+  const refetchProgress = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
+  return { progress, isLoading, error, refetchProgress };
 };
 
 export default useFetchProgress;
