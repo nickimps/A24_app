@@ -20,8 +20,6 @@ const Movies = () => {
     const [selectedMovie, setSelectedMovie] = useState();
 
     const handleCardPress = (item) => {
-        setSelectedMovie(item.title);
-        console.log("movies: " + item.title)
         router.push(`/movie-details/${item.title}`);
     };
 
@@ -38,7 +36,6 @@ const Movies = () => {
                     renderItem={({ item }) => (
                     <MovieCard
                         item={item}
-                        selectedMovie={item.title}
                         handleCardPress={handleCardPress}
                     />
                     )}

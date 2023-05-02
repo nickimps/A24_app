@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import Dialog from "react-native-dialog";
-import { useRouter } from "expo-router";
 
 import styles from "./moviecard.style";
 import { checkImageURL } from "../../../../utils";
@@ -13,39 +12,13 @@ import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config.js";
 
 
-const MovieCard = ({ item/*, handleCardPress*/ }) => {
-    const router = useRouter();
-    
+const MovieCard = ({ item, handleCardPress }) => {
     const ref = doc(db, "movies", item.title);
 
-    const [isWatched, setIsWatched] = useState(false);
-    const [rating, setRating] = useState(0)
+    const [isWatched, setIsWatched] = useState(item.isWatched);
+    const [rating, setRating] = useState(item.myRating);
     const [stringRating, onStringRating] = useState('');
     const [visible, setVisible] = useState(false);
-
-    const handleCardPress = (item) => {
-        // setSelectedMovie(item.title);
-        console.log("movie pressed: " + item.title + "    " + `/movie-details/${item.title}`)
-        router.push(`/movie-details/${item.title}`);
-    };
-
-
-    // Default the watched status of the card from the database
-    const getMovieInformation = async () => {
-        const doc = await getDoc(ref);
-        if (doc.exists()) {
-            setIsWatched(doc.data().isWatched);
-            setRating(doc.data().myRating);
-        }
-    }
-    getMovieInformation();
-
-    // Create rating <Text>
-    const Rating = ({ rating }) => (
-        <View>
-            {rating > 0 ? <Text style={styles.myRating}>{rating}</Text> : <Text style={styles.myRating}></Text>}
-        </View>
-    )
 
     // Update the movie watched status in the database
     const updateMovie = async () => {
@@ -64,8 +37,7 @@ const MovieCard = ({ item/*, handleCardPress*/ }) => {
     const updateRating = async () => {
         try {
             var newRating = parseInt(stringRating);
-            console.log(newRating);
-            setIsWatched(rating => newRating);
+            setRating(rating => newRating);
 
             await updateDoc(ref, {
                 myRating: newRating
@@ -124,7 +96,7 @@ const MovieCard = ({ item/*, handleCardPress*/ }) => {
 
             <View style={styles.btnContainer}>
                 <View style={styles.ratingContainer(rating)}>
-                    <Rating rating={rating}/>
+                    {rating > 0 ? <Text style={styles.myRating}>{rating}</Text> : <Text style={styles.myRating}></Text>}
                 </View>
 
                 <WatchedBtn 

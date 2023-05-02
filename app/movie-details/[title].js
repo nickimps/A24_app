@@ -69,33 +69,8 @@ const MovieDetails = () => {
                   cast={data["cast"]}
                   director={data["director"]}
                   myRating={data["myRating"]}
-                  provider={data["provider"]}
+                  poster={data["poster"]}
                 />
-                <View
-                  style={{
-                    width: 200,
-                    height: 300,
-                    borderRadius: SIZES.xSmall - 3,
-                    paddingTop: SIZES.small,
-                    paddingHorizontal: SIZES.xSmall - 3,
-                    justifyContent: "flex-end",
-                    alignItems: "flex-end",
-                  }}
-                >
-                  <Image
-                    source={{
-                      uri: checkImageURL(data["poster"])
-                        ? data["poster"]
-                        : "https://cdn.sanity.io/images/9ielf7cc/production/1b1c700f83e823b3f92cead2ad91ce46f2ab0b22-7500x4217.jpg?w=2400&h=1349&fit=crop",
-                    }}
-                    resizeMode="cover"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: SIZES.xSmall - 3,
-                    }}
-                  />
-                </View>
               </View>
 
               <MovieProvider provider={data["provider"]} />
