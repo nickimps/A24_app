@@ -4,7 +4,7 @@ import { FONT, SIZES, COLORS } from "../../constants";
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: SIZES.xxLarge + 20,
+    paddingBottom: SIZES.xSmall - 8,
   },
   header: {
     flexDirection: "row",
@@ -24,21 +24,6 @@ const styles = StyleSheet.create({
   cardsContainer: {
     marginTop: SIZES.small,
   },
-  tabsContainer: {
-    width: "100%",
-    marginTop: SIZES.medium,
-  },
-  tab: (activeJobType, item) => ({
-    paddingVertical: SIZES.small / 2,
-    paddingHorizontal: SIZES.small,
-    borderRadius: SIZES.small,
-    borderWidth: 1,
-    borderColor: activeJobType === item ? COLORS.black : COLORS.gray2,
-  }),
-  tabText: (activeJobType, item) => ({
-    fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.black : COLORS.gray2,
-  }),
 });
 
 export default styles;
