@@ -4,6 +4,7 @@ const COLORS = {
   tertiary: "#FF7754",
 
   lightgray: "#f8f8f8",
+  darkgray: "#444444",
   gray: "#ECECEA",
   gray2: "#E3E3E1",
   gray3: "#505050",
@@ -18,6 +19,7 @@ const COLORS = {
   hunyadi_yellow: "#FFBF69",
   cherry_red: "#D2042D",
   forest_green: "#228B22",
+  pastel_white: "#FAF9F6",
 
   white: "#FFFFFF",
   lightWhite: "#FAFAFC",

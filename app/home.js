@@ -19,6 +19,7 @@ import {
   Movies,
 } from "../components";
 import useFetch from "../hook/useFetch";
+import useFetchProgress from "../hook/useFetchProgress";
 
 const watchedTypes = ["All", "Watched", "Unwatched"];
 
@@ -28,6 +29,8 @@ const Home = () => {
   const [activeWatchedType, setActiveWatchedType] = useState("All");
 
   const { data, isLoading, error, refetch } = useFetch(activeWatchedType);
+  const { progress, isLoadingProgress, errorProgress, refetchProgress } =
+    useFetchProgress();
 
   return (
     <SafeAreaView style={styles.safeContainer}>
@@ -47,8 +50,16 @@ const Home = () => {
       />
 
       {/* Progress bar */}
-      <View style={{ padding: SIZES.medium }}>
-        <Progress bgcolor={COLORS.pastel_green} height={30} />
+      <View style={styles.progressContainer}>
+        <View style={styles.ParentView(SIZES.xxLarge)}>
+          <View style={styles.ChildView(progress, COLORS.pastel_green)}>
+            {isLoadingProgress ? (
+              <ActivityIndicator size="large" color={COLORS.primary} />
+            ) : (
+              <Text style={styles.ProgressText}>{`${progress}%`}</Text>
+            )}
+          </View>
+        </View>
       </View>
 
       {/* Main Content Portion */}
@@ -94,7 +105,12 @@ const Home = () => {
         ) : error ? (
           <Text>Something went wrong.</Text>
         ) : (
-          <Movies data={data} isLoading={isLoading} error={error} />
+          <Movies
+            data={data}
+            isLoading={isLoading}
+            error={error}
+            refetchProgress={refetchProgress}
+          />
         )}
       </View>
     </SafeAreaView>
@@ -125,6 +141,33 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     color: activeJobType === item ? COLORS.black : COLORS.gray2,
   }),
+  ParentView: (height) => ({
+    height: height,
+    width: "100%",
+    backgroundColor: COLORS.lightWhite,
+    borderColor: COLORS.charcoal,
+    borderWidth: 1,
+    borderRadius: 10,
+    elevation: 5,
+  }),
+  ChildView: (progress, bgcolor) => ({
+    height: "100%",
+    width: `${progress}%`,
+    backgroundColor: bgcolor,
+    borderRadius: 9,
+    textAlign: "right",
+  }),
+  progressContainer: {
+    padding: SIZES.medium,
+    paddingHorizontal: SIZES.xxLarge + 10,
+    elevation: 10,
+  },
+  ProgressText: {
+    padding: 6,
+    color: "black",
+    fontFamily: "DMBold",
+    textAlign: "center",
+  },
 });
 
 export default Home;

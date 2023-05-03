@@ -4,20 +4,26 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
   containerProvider: {
-    borderRadius: SIZES.medium,
-    paddingTop: SIZES.large,
+    borderRadius: SIZES.small,
+    marginTop: SIZES.large,
+    marginBottom: SIZES.small,
+    paddingVertical: SIZES.small,
+    paddingHorizontal: SIZES.xSmall,
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
     flexDirection: "row",
     flex: 1,
+    backgroundColor: COLORS.lightgray,
+    elevation: 3,
   },
   providerText: (value) => ({
     fontSize: SIZES.medium,
     color: value ? COLORS.forest_green : COLORS.cherry_red,
-    fontFamily: "DMRegular",
+    fontFamily: "DMMedium",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-    paddingEnd: SIZES.medium,
+    paddingHorizontal: SIZES.xSmall,
   }),
 });
 

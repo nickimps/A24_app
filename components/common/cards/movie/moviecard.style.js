@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         : rating > 0
         ? COLORS.color5
         : COLORS.lightgray,
-    borderRadius: 3,
+    borderRadius: 4,
     alignItems: "center",
     justifyContent: "center",
   }),

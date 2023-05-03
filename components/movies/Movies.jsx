@@ -1,29 +1,13 @@
-import React, { useState, useCallback } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  FlatList,
-  ActivityIndicator,
-  RefreshControl,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState } from "react";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 
-import useFetch from "../../hook/useFetch";
 import styles from "./movies.style";
 import { COLORS, SIZES } from "../../constants";
 import MovieCard from "../common/cards/movie/MovieCard.jsx";
 
-// const watchedTypes = ["All", "Watched", "Unwatched"];
-
-const Movies = ({ data }, { isLoading }, error) => {
+const Movies = ({ data, isLoading, error, refetchProgress }) => {
   const router = useRouter();
-
-  // const [activeWatchedType, setActiveWatchedType] = useState("All");
-
-  // const { data, isLoading, error, refetch } = useFetch(activeWatchedType);
-  // move this line to home.js and then pass these in as a parameter so it isnt called many many times
 
   const [selectedMovie, setSelectedMovie] = useState();
 
@@ -43,7 +27,11 @@ const Movies = ({ data }, { isLoading }, error) => {
             <FlatList
               data={data}
               renderItem={({ item }) => (
-                <MovieCard item={item} handleCardPress={handleCardPress} />
+                <MovieCard
+                  item={item}
+                  handleCardPress={handleCardPress}
+                  refetchProgress={refetchProgress}
+                />
               )}
               keyExtractor={(item) => item.title}
               contentContainerStyle={{ rowGap: SIZES.medium }}

@@ -5,7 +5,7 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
   container: {
     borderRadius: SIZES.medium,
-    paddingHorizontal: SIZES.xSmall-3,
+    paddingHorizontal: SIZES.xSmall - 3,
     paddingTop: SIZES.small,
     justifyContent: "flex-start",
     alignItems: "flex-start",
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   containerRating: {
     borderRadius: SIZES.medium,
-    paddingHorizontal: SIZES.xSmall-3,
+    paddingHorizontal: SIZES.xSmall - 3,
     paddingTop: SIZES.small,
     flexDirection: "row",
   },
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   contextText: {
     fontSize: SIZES.medium,
-    color: COLORS.charcoal,
+    color: COLORS.darkgray,
     fontFamily: "DMRegular",
     alignItems: "flex-end",
     justifyContent: "flex-end",
@@ -57,9 +57,10 @@ const styles = StyleSheet.create({
         : rating > 0
         ? COLORS.color5
         : COLORS.gray,
-    borderRadius: 3,
+    borderRadius: 4,
     alignItems: "center",
     justifyContent: "center",
+    elevation: 5,
   }),
   imageContainer: {
     width: 200,
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.xSmall - 3,
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    elevation: 10,
+    elevation: 4,
   },
   imageStyle: {
     width: "100%",

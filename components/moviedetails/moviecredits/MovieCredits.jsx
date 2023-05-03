@@ -5,28 +5,40 @@ import { checkImageURL } from "../../../utils";
 import { SIZES } from "../../../constants";
 
 const MovieCredits = ({ cast, director, myRating, poster }) => {
-
   myRating = parseInt(myRating, 10);
 
   // Make formatting for cast list
   var castList = "";
   for (let i = 0; i < cast.length; i++) {
-    if (i < cast.length-1)
-      castList = castList + cast[i] + "\n";
-    else
-      castList = castList + cast[i];
+    if (i < cast.length - 1) castList = castList + cast[i] + "\n";
+    else castList = castList + cast[i];
   }
 
   // Create rating <Text>
   const Rating = ({ rating }) => (
-      <View>
-          {rating > 0 ? <Text style={styles.ratingNumberText}>{rating}</Text> : <Text style={styles.ratingNumberText}>-</Text>}
-      </View>
-  )
+    <View>
+      {rating > 0 ? (
+        <Text style={styles.ratingNumberText}>{rating}</Text>
+      ) : (
+        <Text style={styles.ratingNumberText}>-</Text>
+      )}
+    </View>
+  );
 
   return (
-    <View style={{flexDirection: "row", flex: 1}}>
-      <View style={{flexDirection: "column", flex: 1}}>
+    <View style={{ flexDirection: "row", flex: 1 }}>
+      <View style={styles.imageContainer}>
+        <Image
+          source={{
+            uri: checkImageURL(poster)
+              ? poster
+              : "https://cdn.sanity.io/images/9ielf7cc/production/1b1c700f83e823b3f92cead2ad91ce46f2ab0b22-7500x4217.jpg?w=2400&h=1349&fit=crop",
+          }}
+          resizeMode="cover"
+          style={styles.imageStyle}
+        />
+      </View>
+      <View style={{ flexDirection: "column", flex: 1 }}>
         <View style={styles.container}>
           <Text style={styles.headText}>Director</Text>
 
@@ -44,27 +56,14 @@ const MovieCredits = ({ cast, director, myRating, poster }) => {
         </View>
 
         <View style={styles.containerRating}>
-          <Text style={styles.ratingText}>Your Rating: </Text>
+          <Text style={styles.ratingText}>My Rating: </Text>
 
           <View style={styles.ratingContainer(myRating)}>
-              <Rating rating={myRating}/>
+            <Rating rating={myRating} />
           </View>
         </View>
       </View>
-
-      <View style={styles.imageContainer}>
-        <Image
-          source={{
-            uri: checkImageURL(poster)
-              ? poster
-              : "https://cdn.sanity.io/images/9ielf7cc/production/1b1c700f83e823b3f92cead2ad91ce46f2ab0b22-7500x4217.jpg?w=2400&h=1349&fit=crop",
-          }}
-          resizeMode="cover"
-          style={styles.imageStyle}
-        />
-      </View>
     </View>
-    
   );
 };
 

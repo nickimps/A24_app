@@ -38,26 +38,6 @@ const Search = ({ searchTerm, setSearchTerm, handleClick }) => {
           />
         </TouchableOpacity>
       </View>
-
-      {/* <View style={styles.tabsContainer}>
-        <FlatList
-          data={watchedTypes}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.tab(activeWatchedType, item)}
-              onPress={() => {
-                setActiveWatchedType(item);
-                // router.push(`/search/${item}`);
-              }}
-            >
-              <Text style={styles.tabText(activeWatchedType, item)}>{item}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item}
-          contentContainerStyle={{ columnGap: SIZES.small }}
-          horizontal
-        />
-      </View> */}
     </View>
   );
 };
