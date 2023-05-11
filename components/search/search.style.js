@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
   },
   searchWrapper: {
     flex: 1,
-    backgroundColor: COLORS.pastel_white,
+    backgroundColor: COLORS.white,
     marginRight: SIZES.small,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: SIZES.small,
+    borderRadius: SIZES.xSmall,
     height: "100%",
   },
   searchInput: {
@@ -30,31 +30,20 @@ const styles = StyleSheet.create({
   searchBtn: {
     width: 50,
     height: "100%",
-    backgroundColor: COLORS.columbia_blue,
-    borderRadius: SIZES.small,
+    backgroundColor: COLORS.green3,
+    borderRadius: SIZES.xSmall,
     justifyContent: "center",
     alignItems: "center",
   },
   searchBtnImage: {
-    width: "60%",
-    height: "60%",
-    tintColor: COLORS.black,
+    width: "70%",
+    height: "70%",
+    tintColor: COLORS.white,
   },
   tabsContainer: {
     width: "100%",
     marginTop: SIZES.medium,
   },
-  tab: (activeJobType, item) => ({
-    paddingVertical: SIZES.small / 2,
-    paddingHorizontal: SIZES.small,
-    borderRadius: SIZES.small,
-    borderWidth: 1,
-    borderColor: activeJobType === item ? COLORS.black : COLORS.gray2,
-  }),
-  tabText: (activeJobType, item) => ({
-    fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.black : COLORS.gray2,
-  }),
 });
 
 export default styles;

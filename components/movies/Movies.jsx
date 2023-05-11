@@ -34,7 +34,7 @@ const Movies = ({ data, isLoading, error, refetchProgress }) => {
                 />
               )}
               keyExtractor={(item) => item.title}
-              contentContainerStyle={{ rowGap: SIZES.medium }}
+              contentContainerStyle={{ rowGap: SIZES.xSmall - 2 }}
               showsVerticalScrollIndicator={false}
             />
           )}

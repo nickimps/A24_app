@@ -90,18 +90,49 @@ const MovieCard = ({ item, handleCardPress, refetchProgress }) => {
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {item.title}
+          </Text>
           <Text style={styles.year}>{item.year}</Text>
 
-          <View style={{ flex: 1, justifyContent: "flex-end" }}>
-            <Text style={styles.synopsis} numberOfLines={3}>
+          <View style={{ flexGrow: 1 }}>
+            <Text style={styles.synopsis} numberOfLines={2}>
               {item?.synopsis}
             </Text>
+          </View>
+
+          <View style={styles.btnContainer}>
+            <WatchedBtn
+              iconUrl={
+                isWatched ? icons.checked_checkbox : icons.unchecked_checkbox
+              }
+              dimension="100%"
+              handlePress={() => {
+                showDialog();
+              }}
+            />
+            {rating > 0 && (
+              <View style={styles.ratingContainer(rating)}>
+                <Text style={styles.myRating}>{rating}</Text>
+              </View>
+            )}
+
+            <Dialog.Container visible={visible} onBackdropPress={handleCancel}>
+              <Dialog.Title>What is your rating?</Dialog.Title>
+              <Dialog.Input
+                placeholder="0-100"
+                keyboardType="numeric"
+                onChangeText={onStringRating}
+                value={stringRating}
+              />
+              <Dialog.Button label="Cancel" onPress={handleCancel} />
+              <Dialog.Button label="Save" onPress={handleSave} />
+            </Dialog.Container>
           </View>
         </View>
       </View>
 
-      <View style={styles.btnContainer}>
+      {/* <View style={styles.btnContainer}>
         <WatchedBtn
           iconUrl={
             isWatched ? icons.checked_checkbox : icons.unchecked_checkbox
@@ -128,7 +159,7 @@ const MovieCard = ({ item, handleCardPress, refetchProgress }) => {
           <Dialog.Button label="Cancel" onPress={handleCancel} />
           <Dialog.Button label="Save" onPress={handleSave} />
         </Dialog.Container>
-      </View>
+      </View> */}
     </TouchableOpacity>
   );
 };

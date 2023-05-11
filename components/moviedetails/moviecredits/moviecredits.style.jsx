@@ -74,8 +74,6 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   imageStyle: {
-    width: "100%",
-    height: "100%",
     borderRadius: SIZES.xSmall - 3,
     width: "100%",
     height: 300,

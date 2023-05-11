@@ -37,7 +37,7 @@ const Home = () => {
       {/* Header with logo and settings button */}
       <Stack.Screen
         options={{
-          headerStyle: { backgroundColor: COLORS.white },
+          headerStyle: { backgroundColor: COLORS.green1 },
           headerShadowVisible: false,
           headerLeft: () => (
             <LogoHeader iconUrl={images.a24_logo} dimension="100%" />
@@ -120,35 +120,33 @@ const Home = () => {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.green1,
   },
   tabsMovieContainer: {
     flex: 1,
-    paddingHorizontal: SIZES.medium,
   },
   tabsContainer: {
     width: "100%",
     marginTop: SIZES.medium,
+    marginHorizontal: SIZES.medium,
   },
   tab: (activeJobType, item) => ({
     paddingVertical: SIZES.small / 2,
     paddingHorizontal: SIZES.small,
-    borderRadius: SIZES.small,
-    borderWidth: 1,
-    borderColor: activeJobType === item ? COLORS.black : COLORS.gray2,
+    borderRadius: SIZES.xSmall,
+    borderWidth: activeJobType === item ? 2 : 1,
+    borderColor: activeJobType === item ? COLORS.green4 : COLORS.lightWhite,
   }),
   tabText: (activeJobType, item) => ({
-    fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.black : COLORS.gray2,
+    fontFamily: activeJobType === item ? FONT.bold : FONT.medium,
+    color: activeJobType === item ? COLORS.green4 : COLORS.lightWhite,
   }),
   ParentView: (height) => ({
     height: height,
     width: "100%",
     backgroundColor: COLORS.lightWhite,
     borderColor: COLORS.charcoal,
-    borderWidth: 1,
     borderRadius: 10,
-    elevation: 5,
   }),
   ChildView: (progress, bgcolor) => ({
     height: "100%",
@@ -159,8 +157,8 @@ const styles = StyleSheet.create({
   }),
   progressContainer: {
     padding: SIZES.medium,
-    paddingHorizontal: SIZES.xxLarge + 10,
-    elevation: 10,
+    paddingHorizontal: SIZES.xxLarge,
+    elevation: 3,
   },
   ProgressText: {
     padding: 6,

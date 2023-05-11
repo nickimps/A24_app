@@ -4,23 +4,23 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     padding: SIZES.xSmall,
-    backgroundColor: COLORS.lightgray,
+    backgroundColor: COLORS.white,
     borderRadius: SIZES.small,
     justifyContent: "space-between",
-    ...SHADOWS.medium,
-    shadowColor: COLORS.white,
-    borderColor: COLORS.black,
-    borderWidth: 1,
+    elevation: 5,
+    marginHorizontal: SIZES.medium,
+    marginTop: 5,
   },
   logoContainer: {
-    width: 80,
-    height: 120,
+    width: 90,
+    height: 135,
+    resizeMode: "contain",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
     backgroundColor: COLORS.lightgray,
     borderRadius: SIZES.xSmall,
-    justifyContent: "center",
-    alignItems: "center",
+    elevation: 5,
   },
   logoImage: {
     width: "100%",
@@ -35,15 +35,13 @@ const styles = StyleSheet.create({
   infoContainer: {
     height: 120,
     flex: 1,
-    marginTop: 0,
+    flexDirection: "column",
     paddingStart: SIZES.xSmall,
   },
   btnContainer: {
     flexDirection: "row",
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 0,
     paddingTop: SIZES.xSmall - 2,
   },
   ratingContainer: (rating) => ({

@@ -30,6 +30,15 @@ const COLORS = {
   color3: "#FFD966",
   color4: "#E68D46",
   color5: "#CC4125",
+
+  green1: "#dad7cd",
+  green2: "#a3b18a",
+  green3: "#588157",
+  green4: "#3a5a40",
+  green5: "#344e41",
+  green6: "#bc6c25",
+  green7: "#cfe1b9",
+  green8: "#e9f5db",
 };
 
 const FONT = {

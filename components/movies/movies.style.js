@@ -4,7 +4,8 @@ import { FONT, SIZES, COLORS } from "../../constants";
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: SIZES.xSmall - 8,
+    flex: 1,
+    marginBottom: SIZES.xSmall - 8,
   },
   header: {
     flexDirection: "row",
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
   },
   cardsContainer: {
-    marginTop: SIZES.small,
+    marginTop: SIZES.xSmall - 2,
   },
 });
 
