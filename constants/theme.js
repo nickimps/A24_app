@@ -39,6 +39,7 @@ const COLORS = {
   green6: "#bc6c25",
   green7: "#cfe1b9",
   green8: "#e9f5db",
+  green9: "#936639",
 };
 
 const FONT = {

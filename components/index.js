@@ -4,7 +4,6 @@ import LogoHeader from "./common/header/LogoHeader";
 
 // home screen
 import Progress from "./progress/Progress";
-import Search from "./search/Search";
 import Movies from "./movies/Movies";
 
 // cards
@@ -21,7 +20,6 @@ export {
   ScreenHeaderBtn,
   LogoHeader,
   Progress,
-  Search,
   Movies,
   MovieCard,
   WatchedBtn,

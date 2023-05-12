@@ -1,28 +1,21 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  ActivityIndicator
-} from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 
 import styles from "./progress.style";
 
-import useFetchProgress from "../../hook/useFetchProgress";
-import { COLORS } from "../../constants";
+import { COLORS, SIZES } from "../../constants";
 
-
-const Progress = ({bgcolor, height}) => {
-  
-  const { progress, isLoading, error, refetchProgress } = useFetchProgress();
-
+const Progress = ({ progress, progressString, isLoadingProgress }) => {
   return (
-    <View style={styles.ParentView(height)}>
-      <View style={styles.ChildView(progress, bgcolor)}>
-        {isLoading ? (
-          <ActivityIndicator size='large' color={COLORS.primary} />
+    <View style={styles.progressContainer}>
+      <View style={styles.ParentView(SIZES.xxLarge)}>
+        <View style={styles.ChildView(progress, COLORS.green9)}>
+          {isLoadingProgress ? (
+            <ActivityIndicator size="small" color={COLORS.primary} />
           ) : (
-          <Text style={styles.ProgressText}>{`${progress}%`}</Text>
+            <Text style={styles.ProgressText}>{`${progressString}`}</Text>
           )}
+        </View>
       </View>
     </View>
   );

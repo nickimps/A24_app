@@ -11,25 +11,24 @@ import {
 import { Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, images, SIZES, FONT } from "../constants";
-import {
-  ScreenHeaderBtn,
-  Progress,
-  LogoHeader,
-  Search,
-  Movies,
-} from "../components";
+import { ScreenHeaderBtn, Progress, LogoHeader, Movies } from "../components";
 import useFetch from "../hook/useFetch";
 import useFetchProgress from "../hook/useFetchProgress";
 
-const watchedTypes = ["All", "Watched", "Unwatched"];
+const watchedTypes = ["All Movies", "Watched", "Unwatched"];
+const sortTypes = ["A-Z", "Rating"];
 
 const Home = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeWatchedType, setActiveWatchedType] = useState("All");
+  const [activeWatchedType, setActiveWatchedType] = useState("All Movies");
+  const [activeSortType, setActiveSortType] = useState("A-Z");
 
-  const { data, isLoading, error, refetch } = useFetch(activeWatchedType);
-  const { progress, isLoadingProgress, errorProgress, refetchProgress } =
+  const { data, isLoading, error, refetch } = useFetch(
+    activeWatchedType,
+    activeSortType
+  );
+  const { progress, progressString, isLoadingProgress, refetchProgress } =
     useFetchProgress();
 
   return (
@@ -42,39 +41,19 @@ const Home = () => {
           headerLeft: () => (
             <LogoHeader iconUrl={images.a24_logo} dimension="100%" />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.settings} dimension="70%" />
-          ),
+          // headerRight: () => (
+          //   <ScreenHeaderBtn iconUrl={icons.settings} dimension="70%" />
+          // ),
           headerTitle: "",
         }}
       />
 
       {/* Progress bar */}
-      <View style={styles.progressContainer}>
-        <View style={styles.ParentView(SIZES.xxLarge)}>
-          <View style={styles.ChildView(progress, COLORS.pastel_green)}>
-            {isLoadingProgress ? (
-              <ActivityIndicator size="large" color={COLORS.primary} />
-            ) : (
-              <Text style={styles.ProgressText}>{`${progress}%`}</Text>
-            )}
-          </View>
-        </View>
-      </View>
-
-      {/* Main Content Portion */}
-      <View style={{ paddingHorizontal: SIZES.medium }}>
-        {/* Search Bar */}
-        <Search
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          handleClick={() => {
-            if (searchTerm) {
-              router.push(`/search/${searchTerm}`);
-            }
-          }}
-        />
-      </View>
+      <Progress
+        progress={progress}
+        progressString={progressString}
+        isLoadingProgress={isLoadingProgress}
+      />
 
       {/* Tabs and Movie List */}
       <View style={styles.tabsMovieContainer}>
@@ -86,12 +65,34 @@ const Home = () => {
                 style={styles.tab(activeWatchedType, item)}
                 onPress={() => {
                   setActiveWatchedType(item);
-                  refetch(item);
+                  refetch(item, activeSortType);
                 }}
               >
                 <Text style={styles.tabText(activeWatchedType, item)}>
                   {item}
                 </Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item}
+            contentContainerStyle={{ columnGap: SIZES.small }}
+            horizontal
+          />
+        </View>
+
+        <View style={{ marginVertical: 5 }} />
+
+        <View style={styles.tabsContainer}>
+          <FlatList
+            data={sortTypes}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.tab(activeSortType, item)}
+                onPress={() => {
+                  setActiveSortType(item);
+                  refetch(activeWatchedType, item);
+                }}
+              >
+                <Text style={styles.tabText(activeSortType, item)}>{item}</Text>
               </TouchableOpacity>
             )}
             keyExtractor={(item) => item}
@@ -127,19 +128,17 @@ const styles = StyleSheet.create({
   },
   tabsContainer: {
     width: "100%",
-    marginTop: SIZES.medium,
     marginHorizontal: SIZES.medium,
   },
   tab: (activeJobType, item) => ({
     paddingVertical: SIZES.small / 2,
     paddingHorizontal: SIZES.small,
-    borderRadius: SIZES.xSmall,
-    borderWidth: activeJobType === item ? 2 : 1,
-    borderColor: activeJobType === item ? COLORS.green4 : COLORS.lightWhite,
+    borderRadius: SIZES.medium,
+    backgroundColor: activeJobType === item ? COLORS.green5 : COLORS.green2,
   }),
   tabText: (activeJobType, item) => ({
     fontFamily: activeJobType === item ? FONT.bold : FONT.medium,
-    color: activeJobType === item ? COLORS.green4 : COLORS.lightWhite,
+    color: activeJobType === item ? COLORS.lightWhite : COLORS.green4,
   }),
   ParentView: (height) => ({
     height: height,

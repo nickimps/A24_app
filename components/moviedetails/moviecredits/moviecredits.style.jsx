@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     borderRadius: SIZES.xSmall - 3,
     marginTop: SIZES.small,
-    marginHorizontal: SIZES.xSmall - 3,
     justifyContent: "flex-end",
     alignItems: "flex-end",
     elevation: 4,

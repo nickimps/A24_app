@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     width: 90,
     height: 135,
     resizeMode: "contain",
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     backgroundColor: COLORS.lightgray,
     borderRadius: SIZES.xSmall,
     elevation: 5,
@@ -27,13 +27,23 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: SIZES.small - 3,
   },
+  providerContainer: {
+    flexDirection: "row",
+    flexGrow: 1,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    marginHorizontal: SIZES.xSmall,
+  },
+  providerImage: {
+    width: "40%",
+    height: "40%",
+  },
   year: {
     fontSize: SIZES.medium,
     fontFamily: FONT.regular,
     color: COLORS.gray3,
   },
   infoContainer: {
-    height: 120,
     flex: 1,
     flexDirection: "column",
     paddingStart: SIZES.xSmall,
@@ -42,7 +52,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: SIZES.xSmall - 2,
   },
   ratingContainer: (rating) => ({
     width: 31,

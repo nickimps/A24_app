@@ -12,6 +12,10 @@ import settings from "../assets/icons/settings.png";
 import checkmark from "../assets/icons/checkmark.png";
 import unchecked_checkbox from "../assets/icons/unchecked-checkbox.png";
 import checked_checkbox from "../assets/icons/checked-checkbox.png";
+import atv_plus from "../assets/icons/atv-plus.png";
+import netflix from "../assets/icons/netflix.png";
+import plex from "../assets/icons/plex.png";
+import bluray from "../assets/icons/bluray.png";
 
 export default {
   heart,
@@ -28,4 +32,8 @@ export default {
   checkmark,
   unchecked_checkbox,
   checked_checkbox,
+  atv_plus,
+  netflix,
+  plex,
+  bluray,
 };

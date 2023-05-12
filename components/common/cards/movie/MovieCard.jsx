@@ -95,13 +95,18 @@ const MovieCard = ({ item, handleCardPress, refetchProgress }) => {
           </Text>
           <Text style={styles.year}>{item.year}</Text>
 
-          <View style={{ flexGrow: 1 }}>
+          {/* <View style={{ flexGrow: 1 }}>
             <Text style={styles.synopsis} numberOfLines={2}>
               {item?.synopsis}
             </Text>
-          </View>
+          </View> */}
 
           <View style={styles.btnContainer}>
+            {rating > 0 && (
+              <View style={styles.ratingContainer(rating)}>
+                <Text style={styles.myRating}>{rating}</Text>
+              </View>
+            )}
             <WatchedBtn
               iconUrl={
                 isWatched ? icons.checked_checkbox : icons.unchecked_checkbox
@@ -111,11 +116,6 @@ const MovieCard = ({ item, handleCardPress, refetchProgress }) => {
                 showDialog();
               }}
             />
-            {rating > 0 && (
-              <View style={styles.ratingContainer(rating)}>
-                <Text style={styles.myRating}>{rating}</Text>
-              </View>
-            )}
 
             <Dialog.Container visible={visible} onBackdropPress={handleCancel}>
               <Dialog.Title>What is your rating?</Dialog.Title>
@@ -129,37 +129,39 @@ const MovieCard = ({ item, handleCardPress, refetchProgress }) => {
               <Dialog.Button label="Save" onPress={handleSave} />
             </Dialog.Container>
           </View>
+
+          <View style={styles.providerContainer}>
+            {item.provider[0] && (
+              <Image
+                source={icons.atv_plus}
+                resizeMode="center"
+                style={styles.providerImage}
+              />
+            )}
+            {item.provider[1] && (
+              <Image
+                source={icons.plex}
+                resizeMode="center"
+                style={styles.providerImage}
+              />
+            )}
+            {item.provider[2] && (
+              <Image
+                source={icons.netflix}
+                resizeMode="center"
+                style={styles.providerImage}
+              />
+            )}
+            {item.provider[3] && (
+              <Image
+                source={icons.bluray}
+                resizeMode="center"
+                style={styles.providerImage}
+              />
+            )}
+          </View>
         </View>
       </View>
-
-      {/* <View style={styles.btnContainer}>
-        <WatchedBtn
-          iconUrl={
-            isWatched ? icons.checked_checkbox : icons.unchecked_checkbox
-          }
-          dimension="100%"
-          handlePress={() => {
-            showDialog();
-          }}
-        />
-        {rating > 0 && (
-          <View style={styles.ratingContainer(rating)}>
-            <Text style={styles.myRating}>{rating}</Text>
-          </View>
-        )}
-
-        <Dialog.Container visible={visible} onBackdropPress={handleCancel}>
-          <Dialog.Title>What is your rating?</Dialog.Title>
-          <Dialog.Input
-            placeholder="0-100"
-            keyboardType="numeric"
-            onChangeText={onStringRating}
-            value={stringRating}
-          />
-          <Dialog.Button label="Cancel" onPress={handleCancel} />
-          <Dialog.Button label="Save" onPress={handleSave} />
-        </Dialog.Container>
-      </View> */}
     </TouchableOpacity>
   );
 };

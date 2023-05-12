@@ -1,25 +1,34 @@
 import { useState, useEffect } from "react";
 
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "../firebase-config.js";
 
-const useFetch = (param) => {
+const useFetch = (watchedType, sortType) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchData = async (param) => {
+  const fetchData = async (watchedType, sortType) => {
     setIsLoading(true);
+
+    var filter = "title";
+    var direction = "asc";
+    if (sortType === "Rating") {
+      filter = "myRating";
+      direction = "desc";
+    }
 
     try {
       const dataArray = [];
 
-      switch (param) {
+      switch (watchedType) {
         case "Watched":
           const q = query(
             collection(db, "movies"),
-            where("isWatched", "==", true)
+            where("isWatched", "==", true),
+            orderBy(filter, direction)
           );
+
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach((doc) => {
             dataArray.push(doc.data());
@@ -29,7 +38,8 @@ const useFetch = (param) => {
         case "Unwatched":
           const q2 = query(
             collection(db, "movies"),
-            where("isWatched", "==", false)
+            where("isWatched", "==", false),
+            orderBy(filter, direction)
           );
           const querySnapshot2 = await getDocs(q2);
           querySnapshot2.forEach((doc) => {
@@ -38,7 +48,9 @@ const useFetch = (param) => {
           break;
 
         default:
-          const querySnapshot3 = await getDocs(collection(db, "movies"));
+          const querySnapshot3 = await getDocs(
+            query(collection(db, "movies"), orderBy(filter, direction))
+          );
           querySnapshot3.forEach((doc) => {
             dataArray.push(doc.data());
           });
@@ -57,12 +69,12 @@ const useFetch = (param) => {
   };
 
   useEffect(() => {
-    fetchData(param);
+    fetchData(watchedType, sortType);
   }, []);
 
-  const refetch = (param) => {
+  const refetch = (watchedType, sortType) => {
     setIsLoading(true);
-    fetchData(param);
+    fetchData(watchedType, sortType);
   };
 
   return { data, isLoading, error, refetch };

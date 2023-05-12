@@ -5,7 +5,6 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
   container: {
     borderRadius: SIZES.medium,
-    paddingHorizontal: SIZES.xSmall-3,
   },
   headText: {
     fontSize: SIZES.xxLarge,

@@ -5,6 +5,7 @@ import { db } from "../firebase-config.js";
 
 const useFetchProgress = () => {
   const [progress, setProgress] = useState(0);
+  const [progressString, setProgressString] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -27,7 +28,7 @@ const useFetchProgress = () => {
       });
 
       setProgress(Math.round((numberOfWatchedMovies / numberOfMovies) * 100));
-      console.log("Progress: " + progress);
+      setProgressString(`${numberOfWatchedMovies}/${numberOfMovies}`);
 
       setIsLoading(false);
     } catch (error) {
@@ -47,7 +48,7 @@ const useFetchProgress = () => {
     fetchData();
   };
 
-  return { progress, isLoading, error, refetchProgress };
+  return { progress, progressString, isLoading, refetchProgress };
 };
 
 export default useFetchProgress;
