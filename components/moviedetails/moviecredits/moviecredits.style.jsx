@@ -11,6 +11,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     flexWrap: "wrap",
   },
+  imdbContainer: {
+    width: 60,
+    height: 60,
+    paddingHorizontal: SIZES.xSmall - 3,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "row",
+  },
   containerRating: {
     borderRadius: SIZES.medium,
     paddingHorizontal: SIZES.xSmall - 3,
@@ -29,6 +37,12 @@ const styles = StyleSheet.create({
   },
   ratingNumberText: {
     fontSize: SIZES.large,
+    color: COLORS.black,
+    fontFamily: "DMBold",
+  },
+  imdbText: {
+    marginStart: 5,
+    fontSize: SIZES.large - 2,
     color: COLORS.black,
     fontFamily: "DMBold",
   },
@@ -76,6 +90,10 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.xSmall - 3,
     width: "100%",
     height: 300,
+  },
+  imdbImage: {
+    width: "100%",
+    height: "100%",
   },
 });
 

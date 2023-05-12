@@ -18,6 +18,7 @@ import {
   ScreenHeaderBtn,
 } from "../../components";
 import useFetchMovieDetails from "../../hook/useFetchMovieDetails";
+
 import { checkImageURL } from "../../utils";
 
 const MovieDetails = () => {
@@ -77,6 +78,7 @@ const MovieDetails = () => {
                 }}
               >
                 <MovieCredits
+                  title={data["title"]}
                   cast={data["cast"]}
                   director={data["director"]}
                   myRating={data["myRating"]}

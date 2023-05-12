@@ -16,6 +16,7 @@ import atv_plus from "../assets/icons/atv-plus.png";
 import netflix from "../assets/icons/netflix.png";
 import plex from "../assets/icons/plex.png";
 import bluray from "../assets/icons/bluray.png";
+import imdb from "../assets/icons/imdb.png";
 
 export default {
   heart,
@@ -36,4 +37,5 @@ export default {
   netflix,
   plex,
   bluray,
+  imdb,
 };

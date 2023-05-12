@@ -1,10 +1,15 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ActivityIndicator } from "react-native";
 
 import styles from "./moviecredits.style";
+import useFetchMovieAPI from "../../../hook/useFetchMovieAPI";
 import { checkImageURL } from "../../../utils";
-import { SIZES } from "../../../constants";
+import { icons, COLORS } from "../../../constants";
 
-const MovieCredits = ({ cast, director, myRating, poster }) => {
+const MovieCredits = ({ title, cast, director, myRating, poster }) => {
+  const { imdbRating, apiLoading, apiError } = useFetchMovieAPI({
+    q: title,
+  });
+
   myRating = parseInt(myRating, 10);
 
   // Make formatting for cast list
@@ -61,6 +66,23 @@ const MovieCredits = ({ cast, director, myRating, poster }) => {
           <View style={styles.ratingContainer(myRating)}>
             <Rating rating={myRating} />
           </View>
+        </View>
+
+        <View style={styles.imdbContainer}>
+          <Image
+            source={icons.imdb}
+            resizeMode="center"
+            style={styles.imdbImage}
+          />
+          {apiLoading ? (
+            <ActivityIndicator size="small" color={COLORS.hunyadi_yellow} />
+          ) : apiError ? (
+            <Text style={styles.imdbText}>-</Text>
+          ) : imdbRating === -1 ? (
+            <Text style={styles.imdbText}>-</Text>
+          ) : (
+            <Text style={styles.imdbText}>{imdbRating}</Text>
+          )}
         </View>
       </View>
     </View>

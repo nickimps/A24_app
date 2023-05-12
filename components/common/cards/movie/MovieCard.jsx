@@ -10,7 +10,6 @@ import { icons } from "../../../../constants";
 
 import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../firebase-config.js";
-import useFetchProgress from "../../../../hook/useFetchProgress";
 
 const MovieCard = ({ item, handleCardPress, refetchProgress }) => {
   const ref = doc(db, "movies", item.title);
